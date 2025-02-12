@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>On-Fly JS compiler</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+        window.MonacoEnvironment = {
+            getWorkerUrl: () => {
+                const code = `
+          self.MonacoEnvironment = {
+            baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.1/min/'
+          };
+          importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.1/min/vs/base/worker/workerMain.min.js');
+        `;
+                const blob = new Blob([code], { type: 'application/javascript' });
+                return URL.createObjectURL(blob);
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="editor-container"></div>
+        <div class="output">
+            <div id="preview-container"></div>
+            <div id="console"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.1/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            window.editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: "\n<h1>Hello, World!</h1>\n<script>\n  console.log('test');\n  alert('alerted');\n</" + "script>",
+                language: 'html',
+                theme: 'vs-dark',
+                automaticLayout: true
+            });
+            editor.onDidChangeModelContent(function () {
+                updateOutput(editor.getValue());
+            });
+            updateOutput(editor.getValue());
+        });
+    </script>
+</body>
+
+</html>
