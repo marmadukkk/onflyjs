@@ -1,29 +1,78 @@
-# On-Fly JS Compiler with VSCode Editor
+# On-Fly JS Compiler (React Version)
 
-A minimal live code playground where you can type HTML, CSS, and JS in a VSCode-like editor and instantly see the output along with console messages.
+Онлайн JavaScript компилятор, построенный с использованием React и Monaco Editor.
 
-## Features
+## Возможности
 
-- **Live Preview:** Code updates automatically without a "Run" button.
-- **VSCode Editor:** Powered by the Monaco editor with a dark theme.
-- **Console Panel:** Displays `console.log`, `console.error`, and `alert` outputs.
-- **Fresh Context:** Each change resets the execution environment.
+- **Monaco Editor**: Полнофункциональный редактор кода с подсветкой синтаксиса
+- **Live Preview**: Мгновенный предварительный просмотр HTML/JS кода
+- **Console Output**: Перехват и отображение console.log, console.error и alert
+- **Responsive Design**: Адаптивный дизайн для различных устройств
+- **Dark Theme**: Темная тема для комфортной работы
 
-## Files
+## Установка
 
-- **index.html:** Sets up the editor, preview, and console.
-- **styles.css:** Dark theme and layout styling.
-- **script.js:** Updates the preview and captures console/alert output.
+1. Убедитесь, что у вас установлен Node.js (версия 14 или выше)
+2. Клонируйте репозиторий или скачайте файлы
+3. Установите зависимости:
 
-## How to Use
+```bash
+npm install
+```
 
-1. Open `index.html` in your browser.
-2. Start editing code in the left pane.
-3. View the live output and console messages on the right.
+## Запуск
 
-## Dependencies
+Для запуска в режиме разработки:
 
-- **Monaco Editor:** For the VSCode-like editor.
-- **RequireJS:** Loads the editor modules.
+```bash
+npm start
+```
+
+Приложение откроется в браузере по адресу [http://localhost:3000](http://localhost:3000).
+
+## Сборка для продакшена
+
+Для создания оптимизированной версии:
+
+```bash
+npm run build
+```
+
+## Технологии
+
+- **React 18** - Основной фреймворк
+- **Monaco Editor** - Редактор кода (как в VS Code)
+- **CSS3** - Стилизация и адаптивный дизайн
+- **HTML5** - Структура приложения
+
+## Структура проекта
+
+```
+src/
+├── App.js          # Основной компонент приложения
+├── App.css         # Стили приложения
+├── index.js        # Точка входа
+└── index.css       # Базовые стили
+
+public/
+└── index.html      # HTML шаблон
+
+package.json         # Зависимости и скрипты
+```
+
+## Использование
+
+1. Введите HTML/JavaScript код в левой панели
+2. Результат отобразится в правой панели в реальном времени
+3. Console сообщения (log, error, alert) появятся в нижней панели
+4. Используйте кнопку "Clear" для очистки console
+
+## Безопасность
+
+Код выполняется в изолированном iframe с ограниченными правами (sandbox), что обеспечивает безопасность выполнения пользовательского кода.
+
+## Лицензия
+
+MIT
 
 
